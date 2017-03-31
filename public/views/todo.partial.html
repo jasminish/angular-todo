@@ -3,17 +3,17 @@
   <form class="form-group" ng-submit="add()">
     <input ng-model="taskName" class="form-control" placeholder="do something">
   </form>
-  <p> Completed: {{completeCount}} 
+  <p> Completed: <span ng-bind="completeCount"></span> |
     <input type="checkbox" ng-model="showCompleted"> Show completed
   </p>
   <table class="table table-condensed">
-    <tr ng-repeat="t in tasks | completedFilter:showCompleted">
-      <td>
+    <tr ng-repeat="t in tasks | completedFilter:showCompleted track by $index">
+      <td> 
         <input type="checkbox" ng-model="t.completed" ng-change="toggleComplete(t)">
         <label ng-bind="t.name"></label>
       </td>
       <td>
-        <button class="btn btn-xs btn-danger" ng-click="destroy(t)">delete</button>
+        <button class="btn btn-xs btn-danger" ng-click="destroy(t)">x</button>
       </td>
     </tr>
   </table>
