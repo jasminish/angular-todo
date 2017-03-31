@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+  <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+  <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-app="todoApp">
+  <div class="container-fluid">
+      <div class="col-md-8 col-md-offset-2">
+      <center><h1>Hello <span ng-bind="name"></h1></center>
+      <input class="form-control" ng-init="name = 'world'" ng-model="name">
+  </div>
+</body>
+</html>
