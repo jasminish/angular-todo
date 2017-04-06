@@ -19,7 +19,7 @@ function AuthService(UserService) {
             });
     };
 
-    authService.setCurrUser = function(username, password) {
+    authService.setCurUser = function(username, password) {
         var authData = username + password; // note: should be encoded
         var curUser = {
             username: username,  
@@ -31,8 +31,12 @@ function AuthService(UserService) {
     };
 
     authService.logout = function() {
-        sessionStorage.curUser = undefined; 
-    }
+        sessionStorage.clear();
+    };
+
+    authService.isAuth = function() {
+        return sessionStorage.curUser !== undefined; 
+    };
 
     return authService; 
 }

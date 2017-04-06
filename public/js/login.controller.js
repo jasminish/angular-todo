@@ -8,7 +8,8 @@ function LoginController(UserService, AuthService, $state) {
     logctrl.login = function() {
         AuthService.login(logctrl.username, logctrl.password, function(response) {
             if (response.success) {
-                AuthService.setCurrUser(logctrl.username, logctrl.password);
+                AuthService.setCurUser(logctrl.username, logctrl.password);
+                location.reload();
                 $state.go('home');
             } 
         });
