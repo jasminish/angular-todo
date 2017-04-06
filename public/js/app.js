@@ -14,4 +14,10 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: '/views/todo.partial.html',
             controller: 'todoController'
         })
+        .state('register', {
+            url: '/register',
+            templateUrl: 'views/register.partial.html',
+            controller: 'RegisterController',
+            controllerAs: 'regctrl'
+        })
 });
