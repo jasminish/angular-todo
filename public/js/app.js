@@ -1,5 +1,17 @@
 var todoApp = angular.module('todoApp', ['ui.router', 'todo']);
 
+// app controller
+todoApp.controller('AppController', AppController); 
+AppController.$inject = ['AuthService', '$state'];
+function AppController(AuthService, $state) {
+    var ctrl = this; 
+    this.logout = function() {
+        AuthService.logout(); 
+        $state.go('home');
+    }
+};
+
+// routes
 todoApp.config(function($stateProvider, $urlRouterProvider) {
     
     $urlRouterProvider.otherwise('/home');
@@ -36,7 +48,7 @@ todoApp.run(function($rootScope, $state) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
         var requireLogin = toState.data.requireLogin;
 
-        if (requireLogin && $rootScope.curUser === 'undefined') {
+        if (requireLogin && sessionStorage.curUser === 'undefined') {
             event.preventDefault();
             return $state.go('login');
         }

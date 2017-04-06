@@ -1,9 +1,9 @@
 angular.module('todoApp')
     .factory('AuthService', AuthService);
 
-AuthService.$inject = ['UserService', '$rootScope'];
+AuthService.$inject = ['UserService'];
 
-function AuthService(UserService, $rootScope) {
+function AuthService(UserService) {
     var authService = {}; 
 
     authService.login = function(username, password, callback) {
@@ -21,13 +21,17 @@ function AuthService(UserService, $rootScope) {
 
     authService.setCurrUser = function(username, password) {
         var authData = username + password; // note: should be encoded
-        $rootScope.curUser = {
+        var curUser = {
             username: username,  
             authData: authData
         }; 
 
         // store user in session storage
-        sessionStorage.curUser = JSON.stringify($rootScope.curUser);
+        sessionStorage.curUser = JSON.stringify(curUser);
+    };
+
+    authService.logout = function() {
+        sessionStorage.curUser = undefined; 
     }
 
     return authService; 

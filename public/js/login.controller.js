@@ -1,5 +1,5 @@
 angular.module('todoApp')
-        .controller('LoginController', LoginController);
+    .controller('LoginController', LoginController);
 
 LoginController.$inject = ['UserService', 'AuthService', '$state'];
 function LoginController(UserService, AuthService, $state) {
