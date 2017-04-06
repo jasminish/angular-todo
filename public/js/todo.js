@@ -4,7 +4,6 @@ todo.controller('todoController', function($scope){
     $scope.saved = localStorage.getItem('tasks');
     $scope.tasks = $scope.saved !== null ? JSON.parse($scope.saved) : [];
     localStorage.setItem('tasks', JSON.stringify($scope.tasks));
-    console.log(localStorage.getItem('tasks'));
     
     $scope.completeCount = function() { 
         let count = 0; 
@@ -44,7 +43,6 @@ todo.controller('todoController', function($scope){
 
 todo.filter('completedFilter', function() {
     return function(tasks, show) {
-        console.log(tasks);
         if (!show) {
             var result = [];
             tasks.forEach(function(t) {
