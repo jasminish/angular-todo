@@ -1,0 +1,17 @@
+<div class="col-md-6 col-md-offset-3">
+    <center><h2>Login</h2></center>
+    <form name="form" ng-submit="logctrl.login()" role="form">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" ng-model="logctrl.username" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" ng-model="logctrl.password" required />
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Login</button>
+            <a ui-sref="register" class="btn btn-link">Register</a>
+        </div>
+    </form>
+</div>

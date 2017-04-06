@@ -20,4 +20,10 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'RegisterController',
             controllerAs: 'regctrl'
         })
+        .state('login', {
+            url: '/login',
+            templateUrl: 'views/login.partial.html',
+            controller: 'LoginController',
+            controllerAs: 'logctrl'
+        })
 });
