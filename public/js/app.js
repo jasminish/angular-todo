@@ -7,23 +7,38 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: '/home',
-            templateUrl: '/views/home.partial.html'
+            templateUrl: '/views/home.partial.html',
+            data: { requireLogin: false }
         })
         .state('todo', {
             url: '/todo',
             templateUrl: '/views/todo.partial.html',
-            controller: 'todoController'
+            controller: 'todoController',
+            data: { requireLogin: true }
         })
         .state('register', {
             url: '/register',
             templateUrl: 'views/register.partial.html',
             controller: 'RegisterController',
-            controllerAs: 'regctrl'
+            controllerAs: 'regctrl',
+            data: { requireLogin: false }
         })
         .state('login', {
             url: '/login',
             templateUrl: 'views/login.partial.html',
             controller: 'LoginController',
-            controllerAs: 'logctrl'
+            controllerAs: 'logctrl',
+            data: { requireLogin: false }
         })
+});
+
+todoApp.run(function($rootScope, $state) {
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+        var requireLogin = toState.data.requireLogin;
+
+        if (requireLogin && $rootScope.curUser === 'undefined') {
+            event.preventDefault();
+            return $state.go('login');
+        }
+    });
 });
