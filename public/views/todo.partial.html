@@ -1,19 +1,19 @@
 <center><h1> Todo list </h1></center>
 <div class="col-md-8 col-md-offset-2">
-  <form class="form-group" ng-submit="add()">
-    <input ng-model="taskName" class="form-control" placeholder="do something">
+  <form class="form-group" ng-submit="taskctrl.add()">
+    <input ng-model="taskctrl.taskName" class="form-control" placeholder="do something">
   </form>
-  <p> Completed: <span ng-bind="completeCount"></span> |
-    <input type="checkbox" ng-model="showCompleted"> Show completed
+  <p> Completed: <span ng-bind="taskctrl.completeCount"></span> |
+    <input type="checkbox" ng-model="taskctrl.showCompleted" ng-change="taskctrl.toggleFilter()"> Show completed
   </p>
   <table class="table table-condensed">
-    <tr ng-repeat="t in tasks | completedFilter:showCompleted track by $index">
+    <tr ng-repeat="t in taskctrl.tasks track by $index">
       <td> 
-        <input type="checkbox" ng-model="t.completed" ng-change="toggleComplete(t)">
+        <input type="checkbox" ng-model="t.completed" ng-change="taskctrl.toggleComplete(t)">
         <label ng-bind="t.name"></label>
       </td>
       <td>
-        <button class="btn btn-xs btn-danger" ng-click="destroy(t)">x</button>
+        <button class="btn btn-xs btn-danger" ng-click="taskctrl.destroy(t)">x</button>
       </td>
     </tr>
   </table>
