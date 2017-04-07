@@ -5,8 +5,11 @@ AppController.$inject = ['AuthService', '$state'];
 function AppController(AuthService, $state) {
     var ctrl = this; 
 
-    var curUser = sessionStorage.curUser; 
-    ctrl.curUser = curUser !== undefined ? JSON.parse(curUser) : {username: "guest"};
+    ctrl.curUser = AuthService.getCurUser(); 
+    console.log(ctrl.curUser);
+    if (ctrl.curUser === null) 
+        ctrl.curUser = {username: "guest"};
+
     ctrl.logout = function() {
         AuthService.logout();
         $state.go('home');

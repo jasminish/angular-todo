@@ -45,6 +45,16 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
                 requireLogout: true
             }
         })
+        .state('settings', {
+            url: '/settings',
+            templateUrl: 'views/settings.partial.html',
+            controller: 'SettingsController',
+            controllerAs: 'setctrl',
+            data: {
+                requireLogin: true,
+                requireLogout: false
+            }
+        })
 });
 
 todoApp.run(function($rootScope, $state) {

@@ -9,7 +9,7 @@ function RegisterController(UserService, $state) {
         UserService.create(regctrl.user)
             .then(function (response) {
                 if (response.success) 
-                    $state.go('home');
+                    $state.go('login');
             });
     };
 }
