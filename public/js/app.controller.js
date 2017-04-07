@@ -1,14 +1,18 @@
 angular.module('todoApp')
     .controller('AppController', AppController); 
 
-AppController.$inject = ['AuthService', '$state'];
-function AppController(AuthService, $state) {
+AppController.$inject = ['AuthService', 'UserService', '$state'];
+function AppController(AuthService, UserService, $state) {
     var ctrl = this; 
 
-    ctrl.curUser = AuthService.getCurUser(); 
-    console.log(ctrl.curUser);
-    if (ctrl.curUser === null) 
+    var sessionUser = AuthService.getCurUser(); 
+    if (sessionUser === null) 
         ctrl.curUser = {username: "guest"};
+    else 
+        UserService.getById(sessionUser.id)
+            .then(function(user) {
+                ctrl.curUser = user;
+            });
 
     ctrl.logout = function() {
         AuthService.logout();

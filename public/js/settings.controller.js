@@ -13,6 +13,8 @@ function SettingsController(UserService, AuthService, $state) {
 
         // update curUser in session storage
         AuthService.setCurUser(setctrl.curUser.username, setctrl.curUser.password, setctrl.curUser.id);
+
+        $state.go('profile');
     };
 
     setctrl.delete = function() {

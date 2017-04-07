@@ -55,6 +55,16 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
                 requireLogout: false
             }
         })
+        .state('profile', {
+            url: '/profile',
+            templateUrl: 'views/profile.partial.html',
+            controller: 'AppController',
+            controllerAs: 'ctrl',
+            data: {
+                requireLogin: true, 
+                requireLogout: false
+            }
+        })
 });
 
 todoApp.run(function($rootScope, $state) {
