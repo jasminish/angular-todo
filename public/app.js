@@ -1,4 +1,4 @@
-var todoApp = angular.module('todoApp', ['ui.router', 'todo']);
+var todoApp = angular.module('todoApp', ['ui.router']);
 
 // routes
 todoApp.config(function($stateProvider, $urlRouterProvider) {
@@ -19,7 +19,8 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
         .state('todo', {
             url: '/todo',
             templateUrl: '/views/todo.partial.html',
-            controller: 'todoController',
+            controller: 'TodoController',
+            controllerAs: 'taskctrl',
             data: { 
                 requireLogin: true, 
                 requireLogout: false
@@ -43,6 +44,26 @@ todoApp.config(function($stateProvider, $urlRouterProvider) {
             data: { 
                 requireLogin: false, 
                 requireLogout: true
+            }
+        })
+        .state('settings', {
+            url: '/settings',
+            templateUrl: 'views/settings.partial.html',
+            controller: 'SettingsController',
+            controllerAs: 'setctrl',
+            data: {
+                requireLogin: true,
+                requireLogout: false
+            }
+        })
+        .state('profile', {
+            url: '/profile',
+            templateUrl: 'views/profile.partial.html',
+            controller: 'AppController',
+            controllerAs: 'ctrl',
+            data: {
+                requireLogin: true, 
+                requireLogout: false
             }
         })
 });
